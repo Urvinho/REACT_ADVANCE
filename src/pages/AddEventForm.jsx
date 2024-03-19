@@ -23,7 +23,7 @@ const AddEventForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/events", {
+      const response = await fetch("http://localhost:5173/events", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,54 +45,60 @@ const AddEventForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <FormControl>
-        <FormLabel>Title</FormLabel>
+        <FormLabel htmlFor="title">Title</FormLabel>
         <Input
           type="text"
+          id="title"
           name="title"
           value={formData.title}
           onChange={handleChange}
         />
       </FormControl>
       <FormControl>
-        <FormLabel>Description</FormLabel>
+        <FormLabel htmlFor="description">Description</FormLabel>
         <Input
           type="text"
+          id="description"
           name="description"
           value={formData.description}
           onChange={handleChange}
         />
       </FormControl>
       <FormControl>
-        <FormLabel>Image URL</FormLabel>
+        <FormLabel htmlFor="image">Image URL</FormLabel>
         <Input
           type="text"
+          id="image"
           name="image"
           value={formData.image}
           onChange={handleChange}
         />
       </FormControl>
       <FormControl>
-        <FormLabel>Start Time</FormLabel>
+        <FormLabel htmlFor="startTime">Start Time</FormLabel>
         <Input
           type="datetime-local"
+          id="startTime"
           name="startTime"
           value={formData.startTime}
           onChange={handleChange}
         />
       </FormControl>
       <FormControl>
-        <FormLabel>End Time</FormLabel>
+        <FormLabel htmlFor="endTime">End Time</FormLabel>
         <Input
           type="datetime-local"
+          id="endTime"
           name="endTime"
           value={formData.endTime}
           onChange={handleChange}
         />
       </FormControl>
       <FormControl>
-        <FormLabel>Categories (comma-separated)</FormLabel>
+        <FormLabel htmlFor="categories">Categories (comma-separated)</FormLabel>
         <Input
           type="text"
+          id="categories"
           name="categories"
           value={formData.categories}
           onChange={handleChange}

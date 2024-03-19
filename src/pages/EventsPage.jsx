@@ -31,7 +31,7 @@ const EventsPage = () => {
 
   useEffect(() => {
     // Fetch events data from the JSON server
-    fetch("http://localhost:3000/events")
+    fetch("http://localhost:5173/events.json")
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);
@@ -101,28 +101,33 @@ const EventsPage = () => {
         {/* Add more categories as needed */}
       </Select>
       <List mt={4}>
-        {filteredEvents.map((event) => (
-          <ListItem key={event.id}>
-            <Link to={`/events/${event.id}`}>
-              <Box>
-                <Heading as="h2" size="md">
-                  {event.title}
-                </Heading>
-                <Text>{event.description}</Text>
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  maxW="200px"
-                  maxH="200px"
-                />
-                <Text>Start Time: {event.startTime}</Text>
-                <Text>End Time: {event.endTime}</Text>
-                <Text>Categories: {event.categories.join(", ")}</Text>
-              </Box>
-            </Link>
-          </ListItem>
-        ))}
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map((event) => (
+            <ListItem key={event.id}>
+              <Link to={`/events/${event.id}`}>
+                <Box>
+                  <Heading as="h2" size="md">
+                    {event.title}
+                  </Heading>
+                  <Text>{event.description}</Text>
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    maxW="200px"
+                    maxH="200px"
+                  />
+                  <Text>Start Time: {event.startTime}</Text>
+                  <Text>End Time: {event.endTime}</Text>
+                  <Text>Categories: {event.categories.join(", ")}</Text>
+                </Box>
+              </Link>
+            </ListItem>
+          ))
+        ) : (
+          <Text>No events found.</Text>
+        )}
       </List>
+
       <Modal isOpen={isOpen} onClose={handleCloseModal}>
         <ModalOverlay />
         <ModalContent>

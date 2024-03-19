@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   Heading,
   Box,
@@ -19,7 +19,7 @@ import {
 
 const EventPage = () => {
   const { eventId } = useParams();
-  const history = useHistory(); // Get the history object to redirect after deleting event
+  const history = useNavigate(); // Get the history object to redirect after deleting event
   const [event, setEvent] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -39,7 +39,7 @@ const EventPage = () => {
 
   useEffect(() => {
     // Fetch event data for the specific eventId from the JSON server
-    fetch(`http://localhost:3000/events/${eventId}`)
+    fetch(`http://localhost:5173/event/${eventId}`)
       .then((response) => response.json())
       .then((data) => {
         setEvent(data);
@@ -68,7 +68,7 @@ const EventPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/events/${eventId}`, {
+      const response = await fetch(`http://localhost:5173/event/${eventId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -116,7 +116,7 @@ const EventPage = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/events/${eventId}`, {
+      const response = await fetch(`http://localhost:5173/event/${eventId}`, {
         method: "DELETE",
       });
 
