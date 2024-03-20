@@ -68,7 +68,7 @@ const EventPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:5173/event/${eventId}`, {
+      const response = await fetch(`http://localhost:3000/events${eventId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -116,7 +116,7 @@ const EventPage = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:5173/event/${eventId}`, {
+      const response = await fetch(`http://localhost:3000/events${eventId}`, {
         method: "DELETE",
       });
 
@@ -156,7 +156,9 @@ const EventPage = () => {
       });
     }
   };
-
+      if (!event) {
+        return <div>No events found</div>
+      }
   return (
     <div>
       <Heading>{event.title}</Heading>

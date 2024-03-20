@@ -31,7 +31,7 @@ const EventsPage = () => {
 
   useEffect(() => {
     // Fetch events data from the JSON server
-    fetch("http://localhost:5173/events.json")
+    fetch("http://localhost:3000/events")
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);
@@ -118,7 +118,7 @@ const EventsPage = () => {
                   />
                   <Text>Start Time: {event.startTime}</Text>
                   <Text>End Time: {event.endTime}</Text>
-                  <Text>Categories: {event.categories.join(", ")}</Text>
+                  <Text>Categories: {event.categories?.join(", ")}</Text>
                 </Box>
               </Link>
             </ListItem>
